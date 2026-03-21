@@ -26,14 +26,12 @@ def colors(name, author, keys):
     for key in keys:
         loaded += f"package.loaded['{name}.{key}'] = nil\n"
 
-    code = f'''" Author: {author}\n
-lua << EOF
+    code = f'''-- Author: {author}\n
 {loaded}
 require("{name}")
-EOF
 '''
 
-    with open(os.path.join(os.path.join(name, 'colors', f'{name}.vim')), 'w') as fhand:
+    with open(os.path.join(os.path.join(name, 'colors', f'{name}.lua')), 'w') as fhand:
         fhand.write(code)
 
 
@@ -66,20 +64,37 @@ return config'''
 
 
 def util():
+    # UPDATED: Now uses vim.api.nvim_set_hl instead of vim.api.nvim_command
     code = '''local M = {}
 
 local function highlight(group, properties)
-    local bg = properties.bg == nil and "" or "guibg=" .. properties.bg
-    local fg = properties.fg == nil and "" or "guifg=" .. properties.fg
-    local style = properties.style == nil and "" or "gui=" .. properties.style
+    local opts = {}
 
-    local cmd = table.concat({
-        "highlight", group, bg, fg, style
-    }, " ")
+    -- Handle colors
+    if properties.fg and properties.fg ~= "NONE" then opts.fg = properties.fg end
+    if properties.bg and properties.bg ~= "NONE" then opts.bg = properties.bg end
+    if properties.sp and properties.sp ~= "NONE" then opts.sp = properties.sp end
 
-    vim.api.nvim_command(cmd)
+    -- Handle styles dynamically
+    if properties.style then
+        if properties.style == "NONE" then
+            -- Explicitly disable inherited styles if NONE is requested
+            opts.bold = false
+            opts.italic = false
+            opts.underline = false
+            opts.undercurl = false
+            opts.strikethrough = false
+            opts.reverse = false
+        else
+            for s in string.gmatch(properties.style, "([^,]+)") do
+                opts[s] = true
+            end
+        end
+    end
+
+    -- Apply the highlight globally (namespace 0)
+    vim.api.nvim_set_hl(0, group, opts)
 end
-
 
 function M.initialise(skeleton)
     for group, properties in pairs(skeleton) do
@@ -137,12 +152,12 @@ def gen_skeleton(syntax, name, colorscheme_name):
     for key, value in syntax.items():
         group = key
         props = value.split(' ')
-        prop_keys = ('fg', 'bg', 'style')
+        prop_keys = ('fg', 'bg', 'style', 'sp')
         if props[0] != '':
-            skeleton = "\t" + group + " = {"
+            skeleton = "\t[\"" + group.strip('["\']') + "\"] = {"
             for i in range(len(props)):
                 if props[i] not in ['-', '.']:
-                    if i == 2:
+                    if i == 2: # or i == 3:
                         style = ','.join([styles[char] for char in props[i]])
                         skeleton += f'{prop_keys[i]} = "{style}", '
                     elif i == 1:
@@ -165,7 +180,7 @@ def gen_skeleton(syntax, name, colorscheme_name):
                             skeleton += f'{prop_keys[i]} = "{props[i]}", '
                         else:
                             skeleton += f"{prop_keys[i]} = C.{props[i]}, "
-            code += '\t' + skeleton + '},\n'
+            code += skeleton + '},\n'
 
     code += "}\n\nreturn " + name
     write(f'{name}.lua', code)
@@ -188,12 +203,15 @@ if __name__ == "__main__":
         print("information key not found in yaml file")
         sys.exit()
 
+    # UPDATED: Added 's' (strikethrough) and 'c' (undercurl)
     styles = {
         'i': 'italic',
         'b': 'bold',
         'u': 'underline',
+        'c': 'undercurl',
         'r': 'reverse',
-        's': 'strikethrough'
+        's': 'strikethrough',
+        'N': 'NONE',
     }
     colorscheme = obj['information']['name']
     author = obj['information']['author']
