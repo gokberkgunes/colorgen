@@ -1,0 +1,209 @@
+information:
+        name: oxocarbon
+        background: dark
+        author: "gg"
+# Src: https://github.com/nyoom-engineering/oxocarbon.nvim/blob/rust/src/lib.rs
+# "#161616", "#262626", "#393939", "#525252", "#dde1e6", "#f2f4f8", "#ffffff", "#08bdba", "#3ddbd9", "#78a9ff", "#ee5396", "#33b1ff", "#ff7eb6", "#42be65", "#be95ff", "#82cfff", "#131313", "",
+# https://github.com/sindrets/diffview.nvim
+# https://user-images.githubusercontent.com/2786478/188331057-f9ec9a0d-8cda-4ff8-ac98-febcc7aa4010.png
+# https://user-images.githubusercontent.com/2786478/188286293-13bbf0ab-3595-425d-ba4a-12f514c17eb6.png
+
+
+# 00 "#161616",
+# 01 "#262626",
+# 02 "#393939",
+# 03 "#525252",
+# 04 "#dde1e6",
+# 05 "#f2f4f8",
+# 06 "#ffffff",
+#
+# 07 "#08bdba",
+# 08 "#3ddbd9",
+# 09 "#78a9ff",
+# 10 "#ee5396",
+# 11 "#33b1ff",
+# 12 "#ff7eb6",
+# 13 "#42be65",
+# 14 "#be95ff",
+# 15 "#82cfff",
+# 16 "#131313",
+# 17 "",
+
+
+palette:
+        bg:       "#161616"
+        bg1:      "#262626"
+        bg2:      "#393939"
+        bg3:      "#525252"
+        bg4:      "#dde1e6" # This is default
+        bg5:      "#f2f4f8"
+        red:      "#ee5396"
+        red2:     "#ff7eb6"
+        green:    "#42be65"
+        blue:     "#78a9ff"
+        blue2:    "#33b1ff"
+        cyan:     "#08bdba"
+        cyan2:    "#3ddbd9"
+        purple:   "#be95ff"
+        gray:     "#82cfff"
+        black:    "#131313"
+
+# b i r u: bold italic reverse underlined
+# first: text color, may skip with -, second for bg.
+# To find variables: https://neovim.io/doc/user/syntax.html#highlight-groups
+# Also to find variables :h highlight-groups
+# Also check :highlight to see currently set variables.
+
+highlights:
+        Normal: "bg4 bg"
+        NormalNC: "bg4 bg1" # Non-focused windows, alternative to tint.nvim plugin
+        Bold: '- - b'
+        Italic: '- - i'
+        ColorColumn: "- bg1" # 80 character mark's color, colorcolumn to set---
+        Conceal: "gray" # color used for concealed text, conceallevel---------
+#       Cursor: "- - -" # doesn't work, color of character under the cursor----
+#       CursorColumn: "- bg1" # vertical cursor line cursorcolumn to set-------
+        CursorLine: "- bg1" # Current line's color. SAME AS COLORCOLUMN.-------
+        CursorLineNr: "bg4 - b" # Current line number on left ----------------
+
+#        Directory: "cyan2" # Directory names & special names in listings-------
+        LineNr: "bg3 bg" # Line numbers on the leftmost, ------------------------
+        Define: "blue" # COPY OF TREESITTER -----------------------------------
+        Macro: "cyan" # COPY OF TREESITTER ------------------------------------
+        PreCondit: "cyan - b" # #if #endif, TSKeyword -------------------------
+        Todo: "green bg - b" # TSTodo ----------------------------------------
+        String: "purple" # COPY OF TREESITTER -----------------------------------
+        PreProc: "blue -" # COPY OF TREESITTER ##
+        Character: "purple" # COPY OF TREESITTER --------------------------------
+        Whitespace: 'bg3 -' # Invisible characters, tablines :h listchars ----
+        Variable: 'bg4' # COPY OF TREESITTER ----------------------------------
+        # variable\"]": 'bg4'
+        Number: "gray" # ----------------------------------------------------
+        Boolean: "blue - b" # TSBoolean ------------------------------------
+        Include: "blue" # TSInclude -------------------------------------------
+        Repeat: "blue - b" # TSRepeat -------------------------------------
+        Conditional: "blue - b" # TSConditional-----------------------------
+        Constant: "bg4" # COPY OF TREESITTER ------------------------------
+        Comment: "bg3" # TSComment -------------------------------------------
+        SpecialComment: "cyan2" # Comment --------------------------------------
+
+        # --------------------------------------------------------------------#
+        # https://github.com/neovim/neovim/blob/master/runtime/syntax/diff.vim
+        diffAdded: "green" # --------------------------------------------------
+        diffChanged: "blue" # -----------------------------------------------
+        diffRemoved: "purple" # --------------------------------------------------
+        DiffText: "blue - b"
+        diffLine: "purple - b" # ----------------------------------------------
+        diffFile: "blue" # ----------------------------------------------------
+        diffOldFile: "purple" # -------------------------------------------------
+        diffNewFile: "cyan2" # -----------------------------------------------
+        diffIndexLine: "gray" # ---------------------------------------------
+        diffComment: "bg4" # ---------------------------------------------------
+        # --------------------------------------------------------------------#
+
+        Visual: "- bg2" # -----------------------------------------------------
+        VisualNOS: "- bg2" # --------------------------------------------------
+        IncSearch: "bg4 red b" # --------------------------------------------
+        Search: "bg1 cyan2 b" # -----------------------------------------------
+        VertSplit: "bg1 bg" # ----------------------------------------------------
+        Identifier: "bg4 - b" #std::COUT,CIN  ..................................
+        Statement: "blue" # \left, \theta \pi etc. (LATEX)
+        Special: "bg4 - b" # \n etc. .......................................
+        Type: "blue" # THIS IS \textbf \mathbb etc. (LATEX) ..................
+        Exception: "blue"
+        Keyword: "blue"
+        Error: "red - b" # Unknown.
+        ErrorMsg: "bg4 blue2" # Errors that appear at command area.
+        Delimiter: 'bg4'
+        Ignore: 'cyan bg b'
+        Debug: 'green'
+        Tag: 'bg4'
+        SpecialChar: 'bg4'
+        Substitute: 'bg4 none'
+        MsgArea: 'bg4 bg'
+        ModeMsg: 'bg4 bg'
+        MsgSeparator: 'bg4 bg'
+        MatchWord: '- - u'
+        MatchWordCur: '- - u'
+        MatchParen: '- bg2 u'
+        MatchParenCur: '- bg2 u'
+        lCursor: 'bg bg4'
+        TermCursor: 'bg bg4'
+        TermCursorNC: 'bg bg4'
+        StorageClass: "blue"
+        Float: "gray"
+        Label: "blue"
+        Function: "cyan2 - b"
+        Underlined: "- - u"
+        Structure: "blue"
+        Typedef: "blue"
+        Folded: "bg3 bg1"
+        FoldColumn: "bg3 bg"
+        MoreMsg: "cyan2"
+        Title: "bg4"
+        Operator: "blue"
+        SignColumn: "bg1 bg"
+        NonText: "bg2"
+
+        NormalFloat: 'bg5 black' # vim.diagnostic float colors (set background same with floatborder fg decides border-line-color and default-fg for document-cmp.)
+        FloatBorder: 'black black' # vim.diagnostic float border(fg) and padding(bg) color
+        Pmenu: "bg4 bg1" # nvim-cmp popup text AND popup BORDER. Consider seperating FloatBorder in window.XXX.winhighlight (same as FloatBorder and NormalFloat)
+        PmenuSel: "cyan2 bg2" #nvim-cmp popup selected colors
+        PmenuSbar: "- bg1"
+        PmenuThumb: "- cyan2"
+
+        Question: "bg4"
+        QuickFixLine: "- bg1"
+        SpecialKey: "bg3"
+        SpellBad: "red - u"
+        SpellCap: "green"
+        SpellLocal: "green"
+        SpellRare: "green"
+        TabLine: "bg4 bg1"
+        TabLineSel: "cyan2 bg3"
+        TabLineFill: "bg4 bg1"
+        Terminal: "bg4 bg"
+        WarningMsg: "bg green"
+        WildMenu: "cyan2 bg1"
+        EndOfBuffer: "bg1"
+
+# From
+# https://github.com/nvim-treesitter/nvim-treesitter/blob/master/CONTRIBUTING.md
+treesitter:
+        # Identifiers
+        "[\"@variable\"]": "bg4"                   # various variable names
+        "[\"@variable.builtin\"]": "bg4"            # built-in variable names (e.g. `this`)
+        "[\"@variable.parameter\"]": "bg4"          # parameters of a function
+        "[\"@variable.parameter.builtin\"]": "- bg4"  # special parameters (e.g. `_`, `it`)
+        "[\"@variable.member\"]": "bg4"             # object and struct fields
+
+        "[\"@constant\"]": "purple"          # constant identifiers (Py: uppercase C: preproc constants)
+        "[\"@constant.builtin\"]": "cyan"  # built-in constant values (lua nil)
+        "[\"@constant.macro\"]": "cyan"    # constants defined by the preprocessor (#define) #include
+
+        "[\"@module\"]": "bg4 b"           # modules or namespaces ----------------------------- TODO
+        "[\"@module.builtin\"]": "bg4 b"   # built-in modules or namespaces --------------------------- TODO
+        "[\"@label\"]": "gray b" #GOTO and other labels (e.g. `label:` in C), including heredoc labels
+
+        # Literals
+        "[\"@string\"]": "purple" # string literals
+        "[\"@string.documentation\"]": "purple" #string documenting code (e.g. Python docstrings)
+        "[\"@string.regexp\"]": "cyan" # regular expressions
+        "[\"@string.escape\"]": "gray" # escape sequences
+        "[\"@string.special\"]": "cyan2" # other special strings (e.g. dates)
+        "[\"@string.special.symbol\"]": "gray" # symbols or atoms
+        "[\"@string.special.url\"]": "- - u" # URIs (e.g. hyperlinks)
+        "[\"@string.special.path\"]": "purple" # filenames
+
+        "[\"@character.special\"]": "purple"
+        "[\"@character\"]": "purple" # wildcards, specials characters
+
+        "[\"@boolean\"]": "blue - b" # True, TRUE
+        "[\"@number\"]": "gray" #
+        "[\"@number.float\"]": "gray" # same as @number
+
+        # Types
+
+        "[\"@type\"]": "blue"             # type or class definitions and annotations
+        "[\"@type.builtin\"]": "bg4 - b"     # built-in types
+        "[\"@type.definition\"]": "blue" # identifiers in type definitions (e.g

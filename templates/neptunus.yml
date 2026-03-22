@@ -1,0 +1,701 @@
+information:
+        name: neptunus
+        background: dark
+        author: "gg"
+# https://user-images.githubusercontent.com/2786478/188331057-f9ec9a0d-8cda-4ff8-ac98-febcc7aa4010.png
+# fg: saturn: #c0bdb6 #c0bdb0 #c0bda6 #c6cbbd neptune: #c5ebed (Play \w HUE)
+# bg: #14161B1
+palette:
+        fg:       "#cbebed"
+        bg:       "#000000"
+        bg1:      "#1c1c1c"
+        bg2:      "#292929"
+        bg3:      "#2f2f2f"
+        bg4:      "#3a3a3a"
+        bg5:      "#4e4e4e"
+        bg6:      "#5f5f5f"
+        bg7:      "#747474"
+        bg8:      "#888888"
+        bg9:      "#9b9b9b"
+        bg10:     "#a5a5a5"
+        bg11:     "#b9b9b9"
+        bg12:     "#c3c3c3"
+# Use 2nd set for rare things, first set for common things. 2nd is brighter.
+        red:      "#e13504"
+        red2:     "#f24451"
+        green:    "#0ecc6e"
+        green2:   "#59f87d"
+        yellow:   "#fdd401"
+        yellow2:  "#fdef28"
+        blue:     "#4d8cfe"
+        blue2:    "#6699ff"
+        cyan:     "#4289a1"
+        cyan2:    "#3b90ad"
+        purple:   "#975ea7"
+        purple2:  "#b891c3"
+        orange:   "#ff8800"
+        orange2:  "#fe8019"
+        gray:     "#808080"
+        gray2:    "#a0b0b0"
+
+# b i r u: bold italic reverse underlined
+# first: text color, may skip with -, second for bg.
+# To find variables: https://neovim.io/doc/user/syntax.html#highlight-groups
+# Also to find variables :h highlight-groups
+# Also check :highlight to see currently set variables.
+
+highlights:
+        Normal: "fg bg"
+        NormalNC: "fg bg1" # Non-focused windows, alternative to tint.nvim plugin
+        Bold: '- - b'
+        Italic: '- - i'
+        ColorColumn: "- bg1" # 80 character mark's color, colorcolumn to set---
+        Conceal: "gray2" # color used for concealed text, conceallevel---------
+#       Cursor: "- - -" # doesn't work, color of character under the cursor----
+#       CursorColumn: "- bg1" # vertical cursor line cursorcolumn to set-------
+        CursorLine: "- bg1" # Current line's color. SAME AS COLORCOLUMN.-------
+        CursorLineNr: "bg5 - b" # Current line number on left ----------------
+
+#        Directory: "blue2" # Directory names & special names in listings-------
+        LineNr: "bg3" # Line numbers on the leftmost, ------------------------
+        Define: "bg6" # COPY OF TREESITTER -----------------------------------
+        Macro: "bg6" # COPY OF TREESITTER ------------------------------------
+        PreCondit: "bg6 - b" # #if #endif, TSKeyword -------------------------
+        Todo: "bg4 yellow b" # TSTodo ----------------------------------------
+        String: "red" # COPY OF TREESITTER -----------------------------------
+        PreProc: "yellow -" # COPY OF TREESITTER ##
+        Character: "red" # COPY OF TREESITTER --------------------------------
+        Whitespace: 'bg3 -' # Invisible characters, tablines :h listchars ----
+        Variable: 'fg' # COPY OF TREESITTER ----------------------------------
+        # variable\"]": 'fg'
+        Number: "blue2" # ----------------------------------------------------
+        Boolean: "green2 - b" # TSBoolean ------------------------------------
+        Include: "bg6" # TSInclude -------------------------------------------
+        Repeat: "yellow2 - b" # TSRepeat -------------------------------------
+        Conditional: "purple - b" # TSConditional-----------------------------
+        Constant: "orange" # COPY OF TREESITTER ------------------------------
+        Comment: "bg5" # TSComment -------------------------------------------
+        SpecialComment: "bg5" # Comment --------------------------------------
+
+        # --------------------------------------------------------------------#
+        # https://github.com/neovim/neovim/blob/master/runtime/syntax/diff.vim
+        diffAdded: "green" # --------------------------------------------------
+        diffChanged: "yellow" # -----------------------------------------------
+        diffRemoved: "red" # --------------------------------------------------
+        DiffText: "yellow - b"
+        diffLine: "purple - b" # ----------------------------------------------
+        diffFile: "blue" # ----------------------------------------------------
+        diffOldFile: "red2" # -------------------------------------------------
+        diffNewFile: "green2" # -----------------------------------------------
+        diffIndexLine: "yellow" # ---------------------------------------------
+        diffComment: "fg" # ---------------------------------------------------
+        # --------------------------------------------------------------------#
+
+        Visual: "yellow bg3" # -----------------------------------------------------
+        VisualNOS: "yellow bg4" # --------------------------------------------------
+        IncSearch: "purple fg b" # --------------------------------------------
+        Search: "fg purple b" # -----------------------------------------------
+        VertSplit: "bg3" # ----------------------------------------------------
+        Identifier: "fg - b" #std::COUT,CIN  ..................................
+        Statement: "purple" # \left, \theta \pi etc. (LATEX)
+        Special: "purple - b" # \n etc. .......................................
+        Type: "green" # THIS IS \textbf \mathbb etc. (LATEX) ..................
+        Exception: "purple"
+        Keyword: "red2"
+        Error: "red2 - b" # Unknown.
+        ErrorMsg: "fg" # Errors that appear at command area.
+        Delimiter: 'bg6'
+        Ignore: 'cyan bg b'
+        Debug: 'red'
+        Tag: 'red'
+        SpecialChar: 'fg'
+        Substitute: 'gray2 orange'
+        MsgArea: 'fg bg'
+        ModeMsg: 'fg bg'
+        MsgSeparator: 'fg bg'
+        MatchWord: '- - u'
+        MatchWordCur: '- - u'
+        MatchParen: 'orange - -'
+        MatchParenCur: 'orange - -'
+        lCursor: 'fg bg'
+        TermCursor: 'fg bg'
+        TermCursorNC: 'fg bg'
+        StorageClass: "blue"
+        Float: "blue2"
+        Label: "blue2"
+        Function: "green - b"
+        Underlined: "- - u"
+        Structure: "yellow"
+        Typedef: "yellow"
+        Folded: "gray"
+        FoldColumn: ""
+        MoreMsg: "fg"
+        Title: "fg"
+        Operator: "yellow2"
+        SignColumn: "- bg"
+        NonText: "gray"
+
+        NormalFloat: 'fg bg' # vim.diagnostic float colors (set background same with floatborder fg decides border-line-color and default-fg for document-cmp.)
+        FloatBorder: 'fg bg' # vim.diagnostic float border(fg) and padding(bg) color
+        Pmenu: "fg bg" # nvim-cmp popup text AND popup BORDER. Consider seperating FloatBorder in window.XXX.winhighlight (same as FloatBorder and NormalFloat)
+        PmenuSel: "bg blue" #nvim-cmp popup selected colors
+        PmenuSbar: "- gray"
+        PmenuThumb: "- fg"
+
+        Question: "red"
+        QuickFixLine: "bg yellow"
+        SpecialKey: "gray"
+        SpellBad: "red2 - u"
+        SpellCap: "green2"
+        SpellLocal: "green2"
+        SpellRare: "green2"
+        TabLine: "gray"
+        TabLineSel: "fg"
+        TabLineFill: " - "
+        Terminal: "fg bg"
+        WarningMsg: "yellow"
+        WildMenu: "bg blue"
+        EndOfBuffer: "bg"
+
+# From
+# https://github.com/nvim-treesitter/nvim-treesitter/blob/master/CONTRIBUTING.md
+treesitter:
+        # Identifiers
+        "[\"@variable\"]": "fg"                   # various variable names
+        "[\"@variable.builtin\"]": "purple2"            # built-in variable names (e.g. `this`)
+        "[\"@variable.parameter\"]": "fg"          # parameters of a function
+        "[\"@variable.parameter.builtin\"]": "- fg"  # special parameters (e.g. `_`, `it`)
+        "[\"@variable.member\"]": "fg"             # object and struct fields
+
+        "[\"@constant\"]": "orange"          # constant identifiers (Py: uppercase C: preproc constants)
+        "[\"@constant.builtin\"]": "green"  # built-in constant values (lua nil)
+        "[\"@constant.macro\"]": "bg6"    # constants defined by the preprocessor (#define) #include
+
+        "[\"@module\"]": "purple b"           # modules or namespaces ----------------------------- TODO
+        "[\"@module.builtin\"]": "purple b"   # built-in modules or namespaces --------------------------- TODO
+        "[\"@label\"]": "fg b" #GOTO and other labels (e.g. `label:` in C), including heredoc labels
+
+        # Literals
+        "[\"@string\"]": "red" # string literals
+        "[\"@string.documentation\"]": "red" #string documenting code (e.g. Python docstrings)
+        "[\"@string.regexp\"]": "red" # regular expressions
+        "[\"@string.escape\"]": "red" # escape sequences
+        "[\"@string.special\"]": "red" # other special strings (e.g. dates)
+        "[\"@string.special.symbol\"]": "red" # symbols or atoms
+        "[\"@string.special.url\"]": "- - u" # URIs (e.g. hyperlinks)
+        "[\"@string.special.path\"]": "red" # filenames
+
+        "[\"@character.special\"]": "red"
+        "[\"@character\"]": "red" # wildcards, specials characters
+
+        "[\"@boolean\"]": "green2 - b" # True, TRUE
+        "[\"@number\"]": "blue2" #
+        "[\"@number.float\"]": "blue2" # same as @number
+
+        # Types
+
+        "[\"@type\"]": "green"             # type or class definitions and annotations
+        "[\"@type.builtin\"]": "purple - b"     # built-in types
+        "[\"@type.definition\"]": "green2" # identifiers in type definitions (e.g. `typedef <type> <identifier>` in C)
+
+        "[\"@attribute\"]": "yellow"          # attribute annotations (e.g. Python decorators, Rust lifetimes)
+        "[\"@attribute.builtin\"]": "yellow" # builtin annotations (e.g. `@property` in Python)
+        "[\"@property\"]": "fg"         # the key in key/value pairs
+        #TSProperty: "fg" # Same as TSField, many colors. ----------------------
+
+        # Comments
+        "[\"@comment\"]": "bg5" # line and block comments
+        "[\"@comment.documentation\"]": "bg5" # comments documenting code
+
+        "[\"@comment.error\"]": "red - -"        # error-type comments (e.g. `ERROR`, `FIXME`, `DEPRECATED`)
+        "[\"@comment.warning\"]": "- fg"       # warning-type comments (e.g. `WARNING`, `FIX`, `HACK`)
+        "[\"@comment.todo\"]": "bg4 yellow b"         # todo-type comments (e.g. `TODO`, `WIP`)
+        "[\"@comment.note\"]": "bg4 yellow b"         # note-type comments (e.g. `NOTE`, `INFO`, `XXX`)
+
+        # Functions
+        "[\"@function\"]": "green - b"             # function definitions
+        "[\"@function.builtin\"]": "green2"     # built-in functions
+        "[\"@function.call\"]": "yellow"        # function calls
+        "[\"@function.macro\"]": "bg6 - b"       # preprocessor macros
+
+        "[\"@function.method\"]":  "purple b"    # method definitions ----------------------------------------------------- TODO
+        "[\"@function.method.call\"]": "purple b" # method calls----------------------------------------------------------- TODO
+        "[\"@constructor\"]": "bg6" # same as delimeter - constructor calls and definitions
+        "[\"@operator\"]": "yellow2"   # symbolic operators (e.g. `+` / `*`)
+
+        # Keywords
+        "[\"@keyword\"]"          : "bg6 - b"    # lua: local, C: goto #if #endif (keywords not fitting into specific categories)
+        "[\"@keyword.coroutine\"]": "purple - b" # keywords related to coroutines (e.g. `go` in Go, `async/await` in Python)
+        "[\"@keyword.function\"]" : "purple - b" # keywords that define a function (e.g. `func` in Go, `def` in Python)
+        "[\"@keyword.operator\"]":  "purple - b" # and, or, sizeof (english unary) - operators that are English words (e.g. `and` / `or`)
+        "[\"@keyword.import\"]": "purple - b" # keywords for including or exporting modules (e.g. `import` / `from` in Python)
+        "[\"@keyword.type\"]":  "red"       # keywords describing namespaces and composite types (e.g. `struct`, `enum`)
+        "[\"@keyword.modifier\"]": "red" # keywords modifying other constructs (e.g. `const`, `static`, `public`)
+        "[\"@keyword.repeat\"]": "yellow2 - b" # keywords related to loops (e.g. `for` / `while`)
+        "[\"@keyword.return\"]": "purple - b" #keywords like `return` and `yield`
+        "[\"@keyword.debug\"]": "red"            # keywords related to debugging
+        "[\"@keyword.exception\"]": "purple" # (same as if) keywords related to exceptions (e.g. `throw` / `catch`)
+
+        "[\"@keyword.conditional\"]": "purple - b"         # keywords related to conditionals (e.g. `if` / `else`)
+        "[\"@keyword.conditional.ternary\"]": "red" # ternary operator (e.g. `?` / `:`)
+
+        "[\"@keyword.directive\"]": "b6 - b"        # various preprocessor directives & shebangs
+        "[\"@keyword.directive.define\"]": "b6 - b"  # preprocessor definition directives
+
+        # Punctuation
+        "[\"@punctuation.delimiter\"]": "bg6" # delimiters (e.g. `;` / `.` / `,`)
+        "[\"@punctuation.bracket\"]": "bg6"  # brackets (e.g. `()` / `{}` / `[]`)
+        "[\"@punctuation.special\"]": "bg6"   # special symbols (e.g. `{}` in string interpolation)
+
+        # Markdown specific overrides to match Vimwiki
+        "[\"@markup.heading.1.markdown\"]": "orange - b"
+        "[\"@markup.heading.2.markdown\"]": "green - b"
+        "[\"@markup.heading.3.markdown\"]": "blue - b"
+        "[\"@markup.heading.4.markdown\"]": "cyan - b"
+        "[\"@markup.heading.5.markdown\"]": "red - b"
+        "[\"@markup.heading.6.markdown\"]": "purple2 - b"
+
+        "[\"@markup.heading.markdown\"]": "bg4" # The '#' symbols
+        "[\"@markup.link.url.markdown\"]": "cyan - u"
+        "[\"@markup.link.label.markdown\"]": "cyan - u"
+        "[\"@markup.list.markdown\"]": "yellow2"
+
+
+        # Markup
+        # "[\"@markup.strong\"]": "- - b"         # bold text
+        # "[\"@markup.italic\"]": "-"        # italic text
+        # "[\"@markup.strikethrough\"]": "-"  # struck-through text
+        # "[\"@markup.underline\"]": "- - u"     # underlined text (only for literal underline markup!)
+
+        #"[\"@markup.heading\"]": "yellow"        # headings, titles (including markers) ------- latek too?
+        #"[\"@markup.heading.1\"]": "yellow2"      # top-level heading
+        # "[\"@markup.heading.2\"]":      # section heading
+        # "[\"@markup.heading.3\"]":      # subsection heading
+        # "[\"@markup.heading.4\"]":      # and so on
+        # "[\"@markup.heading.5\"]":      # and so forth
+        # "[\"@markup.heading.6\"]":      # six levels ought to be enough for anybody
+        #
+        # "[\"@markup.quote\"]":          # block quotes
+        "[\"@markup.math\"]": "purple"    # environments (e.g. `$ ... $` in LaTeX)
+        #
+        # "[\"@markup.link\"]":           # text references, footnotes, citations, etc.
+        # "[\"@markup.link.label\"]":     # link, reference descriptions
+        # "[\"@markup.link.url\"]":       # URL-style links
+        #
+        # "[\"@markup.raw\"]":            # literal or verbatim text (e.g. inline code)
+        # "[\"@markup.raw.block\"]":      # literal or verbatim text as a stand-alone block
+
+        # "[\"@markup.list\"]":           # list markers
+        # "[\"@markup.list.checked\"]":   # checked todo-style list markers
+        # "[\"@markup.list.unchecked\"]": # unchecked todo-style list markers
+
+        # Diff
+        # "[\"@diff.plus\"]":       # added text (for diff files)
+        # "[\"@diff.minus\"]":      # deleted text (for diff files)
+        # "[\"@diff.delta\"]":      # changed text (for diff files)
+        #
+        # HTML
+        # "[\"@tag\"]":           # XML-style tag names (and similar)
+        # "[\"@tag.builtin\"]":   # builtin tag names (e.g. HTML5 tags)
+        # "[\"@tag.attribute\"]": # XML-style tag attributes
+        # "[\"@tag.delimiter\"]": # XML-style tag delimiters
+
+#TSField: "fg" # Lua table. disabling, cause many colors. --------------
+        TSEnvironment: "blue - b" # \begin without { } part. ------------------
+        TSEnvironmentName: "fg - b"  # \begin's { } part. ---------------------
+        TSURI: "- - u" # URLs -------------------------------------------------
+
+        TSMethod: "yellow" #...................................................
+
+        TSText: "- fg" # SEARCHING.............................................
+        TSDanger: "- fg" # SEARCHING ..........................................
+
+lsp_semantic:
+        # --------------------------------------------------------------------#
+        # LSP Semantic Token Types
+        # These override Tree-sitter when the LSP has project-wide context.
+        # --------------------------------------------------------------------#
+        "[\"@lsp.type.class\"]": "yellow"
+        "[\"@lsp.type.comment\"]": "bg5"
+        "[\"@lsp.type.decorator\"]": "yellow" # Same as @attribute
+        "[\"@lsp.type.enum\"]": "green"
+        "[\"@lsp.type.enumMember\"]": "cyan"
+        "[\"@lsp.type.event\"]": "yellow"
+        "[\"@lsp.type.function\"]": "green - b"
+        "[\"@lsp.type.interface\"]": "yellow"
+        "[\"@lsp.type.keyword\"]": "bg6 - b"
+        "[\"@lsp.type.macro\"]": "bg6 - b"
+        "[\"@lsp.type.method\"]": "bg purple b"
+        "[\"@lsp.type.modifier\"]": "red"
+        "[\"@lsp.type.namespace\"]": "bg purple b" # Same as @module
+        "[\"@lsp.type.number\"]": "blue2"
+        "[\"@lsp.type.operator\"]": "yellow2"
+        "[\"@lsp.type.parameter\"]": "- fg"
+        "[\"@lsp.type.property\"]": "fg"
+        "[\"@lsp.type.regexp\"]": "red"
+        "[\"@lsp.type.string\"]": "red"
+        "[\"@lsp.type.struct\"]": "yellow"
+        "[\"@lsp.type.type\"]": "green"
+        "[\"@lsp.type.typeParameter\"]": "cyan"
+        "[\"@lsp.type.variable\"]": "fg"
+
+        # --------------------------------------------------------------------#
+        # LSP Semantic Token Modifiers
+        # This is where LSP shines (e.g., underlining mutable variables)
+        # --------------------------------------------------------------------#
+        "[\"@lsp.mod.deprecated\"]": "- - s" # Strikethrough
+        "[\"@lsp.typemod.variable.mutable\"]": "- - u" # Underline mutable variables
+        "[\"@lsp.typemod.function.async\"]": "cyan2 - i" # Italic/Cyan async functions
+        "[\"@lsp.typemod.method.async\"]": "cyan2 bg i" # Italic/Cyan async methods
+        "[\"@lsp.typemod.variable.readonly\"]": "orange" # Constant/Readonly variables
+        "[\"@lsp.typemod.parameter.mutable\"]": "- - u" # Underline mutable params
+
+vimwiki:
+        VimwikiHeader1: "orange - b"
+        VimwikiHeader2: "green - b"
+        VimwikiHeader3: "blue - b"
+        VimwikiHeader4: "cyan - b"
+        VimwikiHeader5: "red - b"
+        VimwikiHeader6: "purple2 - b"
+        VimwikiLink: "cyan - u"
+        # header should be close to background color, if not confusion occurs
+        VimwikiHeaderChar: "bg4"
+        VimwikiHR: "yellow2"
+        VimwikiList: "yellow2"
+        VimwikiTag: "orange"
+        VimwikiMarkers: "bg3"
+
+#Html:
+#        htmlArg: "yellow"
+#        htmlBold: "- - b"
+#        htmlEndTag: "fg"
+#        htmlH1: "fg"
+#        htmlH2: "fg"
+#        htmlH3: "fg"
+#        htmlH4: "fg"
+#        htmlH5: "fg"
+#        htmlH6: "fg"
+#        htmlItalic: "- - i"
+#        htmlLink: "fg - u"
+#        htmlSpecialChar: "yellow"
+#        htmlSpecialTagName: "blue"
+#        htmlTag: "blue2"
+#        htmlTagN: "orange"
+#        htmlTagName: "orange"
+#        htmlTitle: "fg"
+
+#Markdown:
+#        # Matches VimwikiHeaders 1-6
+#        markdownH1: "orange - b"
+#        markdownH2: "green - b"
+#        markdownH3: "blue - b"
+#        markdownH4: "cyan - b"
+#        markdownH5: "red - b"
+#        markdownH6: "purple2 - b"
+#
+#        # Matches VimwikiHeaderChar (the # symbols)
+#        markdownHeadingDelimiter: "bg4"
+#
+#        # Matches VimwikiHR
+#        markdownRule: "yellow2"
+#        markdownHeadingRule: "yellow2"
+#
+#        # Matches VimwikiList
+#        markdownListMarker: "yellow2"
+#        markdownOrderedListMarker: "yellow2"
+#
+#        # Matches VimwikiLink
+#        markdownLinkText: "cyan - u"
+#        markdownUrl: "cyan - u"
+#
+#        # Matches VimwikiMarkers (brackets, backticks, etc)
+#        markdownCodeDelimiter: "bg3"
+#        markdownLinkDelimiter: "bg3"
+#        markdownIdDelimiter: "bg3"
+#
+#        # --- The rest of your markdown defaults (uncommented) ---
+#        markdownBoldItalic: '- - bi'
+#        markdownEscape  : 'orange'
+#        markdownFootnoteDefinition : 'orange'
+#        markdownFootnote: 'orange'
+#        markdownBlockquote: "gray2"
+#        markdownBold: "- - b"
+#        markdownCode: "yellow"
+#        markdownCodeBlock: "gray2"
+#        markdownId: "red"
+#        markdownIdDeclaration: "blue"
+#        markdownItalic: "- - i"
+# Php:
+#        phpInclude: "red"
+#        phpClass: "yellow"
+#        phpClasses: "yellow"
+#        phpFunction: "blue"
+#        phpType: "red"
+#        phpKeyword: "red"
+#        phpVarSelector: "fg"
+#        phpIdentifier: "fg"
+#        phpMethod: "blue"
+#        phpBoolean: "blue"
+#        phpParent: "fg"
+#        phpOperator: "red"
+#        phpRegion: "red"
+#        phpUseNamespaceSeparator: "fg"
+#        phpClassNamespaceSeparator: "fg"
+#        phpDocTags: "red"
+#        phpDocParam: "red"
+
+# using lsp, not coc.
+#CoC:
+#        CocExplorerIndentLine: "gray"
+#        CocExplorerBufferRoot: "orange"
+#        CocExplorerFileRoot: "orange"
+#        CocExplorerBufferFullPath: "gray"
+#        CocExplorerFileFullPath: "gray"
+#        CocExplorerBufferReadonly: "red"
+#        CocExplorerBufferModified: "red"
+#        CocExplorerBufferNameVisible: "orange"
+#        CocExplorerFileReadonly: "red"
+#        CocExplorerFileModified: "red"
+#        CocExplorerFileHidden: "gray"
+#        CocExplorerHelpLine: "red"
+
+#Easymotion:
+#        EasyMotionTarget: "red2 - b"
+#        EasyMotionTarget2First: "red2 - b"
+#        EasyMotionTarget2Second: "red2 - b"
+#        EasyMotionShade: ""
+#        EasyMotionIncSearch:
+#        EasyMotionMoveHL:
+
+
+#Startify:
+#        StartifyNumber: "fg"
+#        StartifySelect: "blue"
+#        StartifyBracket: "blue"
+#        StartifySpecial: "orange"
+#        StartifyVar: "blue"
+#        StartifyPath: "yellow"
+#        StartifyFile: "fg"
+#        StartifySlash: "fg"
+#        StartifyHeader: "bg3"
+#        StartifySection: "yellow"
+#        StartifyFooter: "yellow"
+
+#Fugitive:
+#        diffAdded: "yellow"
+#        diffRemoved: "orange"
+#        diffFileId: "blue - br"
+#        diffFile: "gray"
+#        diffNewFile: "yellow"
+#        diffOldFile: "orange"
+#
+#Signify:
+#        SignifySignAdd: "yellow"
+#        SignifySignChange: "yellow"
+#        SignifySignDelete: "orange"
+
+#GitGutter:
+#        GitGutterAdd: "green"
+#        GitGutterChange: "yellow"
+#        GitGutterDelete: "purple"
+
+#Git:
+#        SignAdd: 'green2'
+#        SignChange: 'blue2'
+#        SignDelete: 'red2'
+#        GitSignsAdd: 'green2'
+#        GitSignsChange: 'blue2'
+#        GitSignsDelete: 'red2'
+
+lsp:
+    DiagnosticError: 'red'
+    DiagnosticWarn: 'orange'
+    DiagnosticInfo: 'yellow'
+    DiagnosticHint: 'blue'
+    DiagnosticOk:   'green'
+
+    DiagnosticVirtualTextError: 'red'
+    DiagnosticVirtualTextWarn: 'orange'
+    DiagnosticVirtualTextInfo: 'yellow2'
+    DiagnosticVirtualTextHint: 'blue2'
+    DiagnosticVirtualTextOk: 'green2'
+
+    DiagnosticVirtualLinesError: 'red'
+    DiagnosticVirtualLinesWarn: 'orange'
+    DiagnosticVirtualLinesInfo: 'yellow2'
+    DiagnosticVirtualLinesHint: 'blue2'
+    DiagnosticVirtualLinesOk: 'green2'
+
+    DiagnosticVirtualSignError: 'green'
+    DiagnosticVirtualSignWarn: 'green'
+    DiagnosticVirtualSignInfo: 'green'
+    DiagnosticVirtualSignHint: 'green'
+    DiagnosticVirtualSignOk: 'green'
+
+
+    DiagnosticVirtualFloatingError: 'green'
+    DiagnosticVirtualFloatingWarn: 'orange'
+    DiagnosticVirtualFloatingInfo: 'yellow2'
+    DiagnosticVirtualFloatingHint: 'blue2'
+    DiagnosticVirtualFloatingOk: 'green2'
+
+    DiagnosticDeprecated: 'green - - s'
+    DiagnosticUnnecessary: 'cyan'
+
+    DiagnosticUnderlineError: '- - u'
+    DiagnosticUnderlineWarn: '- - u'
+    DiagnosticUnderlineInfo: '- - u'
+    DiagnosticUnderlineHint: '- - u'
+    DiagnosticUnderlineOk:   '- - u green'
+
+
+#Quickscope:
+#        QuickScopePrimary: 'purple2 - u'
+#        QuickScopeSecondary: 'cyan2 - u'
+#
+#Telescope:
+#        TelescopeSelection: 'blue2'
+#        TelescopeMatching: 'yellow2 - b'
+#        TelescopeBorder: 'blue bg'
+
+nvimtree:
+        NvimTreeNormal: 'fg bg'
+        NvimTreeFolderIcon: 'blue2'
+        NvimTreeIndentMarker: '#c5c5c5'
+        # NvimTreeIndentMarker: '#39393A'
+        NvimTreeVertSplit: 'bg3 bg3'
+        NvimTreeFolderName: 'gray2'
+        NvimTreeOpenedFolderName: 'gray2 - bi'
+        NvimTreeEmptyFolderName: 'gray - i'
+        NvimTreeGitIgnored: 'gray - i'
+        NvimTreeImageFile: 'gray2'
+        NvimTreeSpecialFile: 'red2'
+        NvimTreeEndOfBuffer: 'gray2'
+        NvimTreeCursorLine: '- #2A2D2E'
+        NvimTreeGitignoreIcon: '#E64A19'
+        # NvimTreeIndentMarker: '#585858'
+        NvimTreeGitStaged: 'green'
+        NvimTreeGitNew: 'green'
+        NvimTreeGitRenamed: 'green'
+        NvimTreeGitDeleted: 'red2'
+        NvimTreeGitMerge: 'blue2'
+        NvimTreeGitDirty: 'blue2'
+        NvimTreeSymlink: 'cyan'
+        NvimTreeRootFolder: 'fg - b'
+        NvimTreeExecFile: '#9FBA89'
+# Lir:
+#        LirFloatNormal: "gray2 bg3"
+#        LirDir: "blue"
+#        LirSymLink: "cyan"
+#        LirEmptyDirText: "blue"
+
+#WhichKey:
+#        WhichKey: 'purple'
+#        WhichKeySeperator: 'green'
+#        WhichKeyGroup: 'blue'
+#        WhichKeyDesc: 'red'
+#        WhichKeyFloat: '- bg2'
+
+#Buffer:
+#        bufferCurrent: 'fg bg'
+#        bufferCurrentIndex: 'fg bg'
+#        bufferCurrentMod: 'yellow2 bg'
+#        bufferCurrentSign: 'blue2 bg'
+#        bufferCurrentTarget: 'red bg b'
+#        bufferVisible: 'fg bg'
+#        bufferVisibleIndex: 'fg bg'
+#        bufferVisibleMod: 'yellow2 bg'
+#        bufferVisibleSign: 'gray bg'
+#        bufferVisibleTarget: 'red bg b'
+#        bufferInactive: 'gray bg3'
+#        bufferInactiveIndex: 'gray bg3'
+#        bufferInactiveMod: 'yellow2 bg3'
+#        bufferInactiveSign: 'gray bg3'
+#        bufferInactiveTarget: 'red bg3 b'
+
+#statusLine:
+#        statusLine: "fg bg3"
+#        statusLineNC: "gray"
+#        statusLineTerm: "fg bg3"
+#        statusLineTermNC: "bg3"
+#        statusLineSeparator: 'bg3'
+
+#        indentBlankline:
+#        indentBlanklineContextChar: 'gray2'
+#        indentBlanklineContextStart: '- - u'
+#        indentBlanklineChar: 'bg2'
+#        indentBlanklineSpaceChar: 'cyan2'
+#        indentBlanklineSpaceCharBlankline: 'yellow2'
+
+#dashboard:
+#        dashboardHeader: 'blue'
+#        dashboardCenter: 'purple'
+#        dashboardFooter: 'cyan'
+
+#diffView:
+#        diffViewNormal: 'gray bg3'
+#        diffviewStatusAdded: 'green2'
+#        diffviewStatusModified: 'blue2'
+#        diffviewStatusRenamed: 'blue2'
+#        diffviewStatusDeleted: 'red2'
+#        diffviewFilePanelInsertion: 'green2'
+#        diffviewFilePanelDeletion: 'red2'
+#        diffviewVertSplit: '- bg'
+
+#bookmarks:
+#        bookmarkSign: 'blue2'
+#        bookmarkAnnotationSign: 'blue2'
+#        bookmarkLine: 'blue'
+#        bookmarkAnnotationLine: 'blue'
+
+#Bqf:
+#        BqfPreviewFloat: 'fg'
+#        BqfPreviewBorder: 'fg'
+#        BqfPreviewCursor: ''
+#        BqfPreviewRange: '- blue'
+#        BqfSign: ''
+
+cmp:
+#        # The deprecated items' color.
+#        CmpItemAbbrDeprecated: 'gray'
+#        # The unmatched characters' color.
+#        CmpItemAbbr: 'fg'
+#        # The_matched characters' color.
+#        CmpItemAbbrMatch: 'blue'
+#        # The fuzzy matched characters highlight.
+#        CmpItemAbbrMatchFuzzy: 'yellow'
+#        # The kind field,
+        CmpItemKind: 'purple' # Cmp icon's color. Match this FloatBorder and Pmenu.
+#        CmpItemKindVariable: 'blue2'
+#        CmpItemKindInterface: 'blue2'
+#        CmpItemKindText: 'blue2'
+#        CmpItemKindFunction: 'purple'
+#        CmpItemKindMethod: 'purple'
+#        CmpItemKindKeyword: 'fg'
+#        CmpItemKindProperty: 'fg'
+#        CmpItemKindUnit: 'fg'
+#        # The menu field.
+#        CmpItemMenu: '#f0f00f'
+
+#SymbolOutline:
+#        SymbolsOutlineConnector: 'gray'
+#        FocusedSymbol: '- #36383F'
+#
+#Misc:
+#        debugPc: '- cyan'
+#        debugBreakpoint: 'red - r'
+#        CodiVirtualText: 'blue'
+#        CompeDocumentation: '- bg2'
+#        # XML
+#        xmlTag: 'cyan'
+#        xmlTagName: 'cyan'
+#        xmlEndTag: 'cyan'
+#        # YAML
+#        yamlPlainScalar: 'orange'
+#        yamlTSField: 'blue'
+#        # CSS
+#        cssTSProperty: 'yellow'
+#        cssTSString: 'orange'
+#        cssTSType: 'red'
+#        # Javascript
+#        javascriptTSKeyword: 'blue'
