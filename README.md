@@ -1,12 +1,11 @@
 Lua based Color scheme generator for neovim
 
-## If you can't use package manager to install, use below lInstall requirements
+## Requirements
 ```sh
-pip install -r requirements.txt
+PyYAML==5.4.1
 ```
 ## Generate your colorscheme
-
-```
+```sh
 python ez.py theme.yml
 ```
 
@@ -22,7 +21,6 @@ vim.g.italic_variables = true              -- italic variables(Default: false)
 ## Put the files directly too lua folder in neovim, if you're importing as folder change init.lua
 ```lua
 local util = require("core.neptunus.util")
-...
 ```
 
-**Credit** for the script for creating colorschemes: [repo](https://github.com/Murtaza-Udaipurwala/ez.nvim)
+Original script is from: [ez.nvim](https://github.com/Murtaza-Udaipurwala/ez.nvim)
