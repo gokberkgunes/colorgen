@@ -73,6 +73,11 @@ def util():
 local function highlight(group, properties)
     local opts = {}
 
+    if properties.link then
+            vim.api.nvim_set_hl(0, group, { link = properties.link })
+            return
+    end
+
     -- Handle colors
     if properties.fg and properties.fg ~= "NONE" then opts.fg = properties.fg end
     if properties.bg and properties.bg ~= "NONE" then opts.bg = properties.bg end
@@ -157,6 +162,11 @@ def gen_skeleton(syntax, name, colorscheme_name):
         props = value.split(' ')
         prop_keys = ('fg', 'bg', 'style', 'sp')
         if props[0] != '':
+            if props[0].startswith('@'):
+                skeleton = '\t\t["' + group.strip("[]'\"\\") + '"] = { link = "' + props[0][1:] + '" },\n'
+                code += skeleton
+                continue
+
             skeleton = "\t\t[\"" + group.strip('["\']') + "\"] = {"
             for i in range(len(props)):
                 if props[i] not in ['-', '.']:
