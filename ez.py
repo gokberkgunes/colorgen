@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-# Author: Murtaza Udaipurwala <https://github.com/Murtaza-Udaipurwala>
-
 import yaml
 import os
 import argparse
@@ -22,18 +20,23 @@ def write(fname, content):
 
 
 def colors(name, author, keys):
-    loaded = f"package.loaded['{name}'] = nil\n"
-    for key in keys:
-        loaded += f"package.loaded['{name}.{key}'] = nil\n"
+    code = f'''for module_name, _ in pairs(package.loaded) do
+    if module_name:match("^{name}") then
+        package.loaded[module_name] = nil
+    end
+end
 
-    code = f'''-- Author: {author}\n
-{loaded}
+vim.cmd("highlight clear")
+if vim.fn.exists("syntax_on") then
+    vim.cmd("syntax reset")
+end
+vim.g.colors_name = "{name}"
+
 require("{name}")
 '''
 
     with open(os.path.join(os.path.join(name, 'colors', f'{name}.lua')), 'w') as fhand:
         fhand.write(code)
-
 
 def config(name):
     code = '''local config
@@ -110,7 +113,7 @@ return M'''
 def init(name, background, keys):
     requirements = ""
     for key in keys:
-        requirements += f'local {key} = require("{name}.{key}")\n'
+        requirements += f'util.initialise(require("{name}.{key}").get(C, Config))\n'
 
     code = f'''vim.api.nvim_command("hi clear")
 if vim.fn.exists("syntax_on") then
@@ -147,14 +150,14 @@ def gen_palette(palette):
 
 
 def gen_skeleton(syntax, name, colorscheme_name):
-    code = f'local {name} = {{\n'
+    code = 'local M = {}\n\nfunction M.get(C, Config)\n\tlocal highlights = {\n'
 
     for key, value in syntax.items():
         group = key
         props = value.split(' ')
         prop_keys = ('fg', 'bg', 'style', 'sp')
         if props[0] != '':
-            skeleton = "\t[\"" + group.strip('["\']') + "\"] = {"
+            skeleton = "\t\t[\"" + group.strip('["\']') + "\"] = {"
             for i in range(len(props)):
                 if props[i] not in ['-', '.']:
                     if i == 2: # or i == 3:
@@ -182,7 +185,7 @@ def gen_skeleton(syntax, name, colorscheme_name):
                             skeleton += f"{prop_keys[i]} = C.{props[i]}, "
             code += skeleton + '},\n'
 
-    code += "}\n\nreturn " + name
+    code += "\t}\n\n\treturn highlights\nend\n\nreturn M"
     write(f'{name}.lua', code)
 
 
