@@ -46,11 +46,13 @@ highlights:
         # ==========================================
         Normal:         "fg bg"
         NormalNC:       "- bg1"       # Non-focused windows
-        CursorLine:     "- bg1"       # Current line's color
+        CursorLine:     "@NormalNC"       # Current line's color
         CursorColumn:   "@CursorLine" # Vertical cursor line
         ColorColumn:    "@CursorLine" # 80 character mark's color
-        LineNr:         "bg3"         # Line numbers on the leftmost
-        CursorLineNr:   "bg8 - b"     # Active line number
+
+        LineNr:         "bg5"         # Line numbers on the leftmost
+        CursorLineNr:   "@LineNr"     # Active line number
+
         SignColumn:     "- bg"
         FoldColumn:     ""
         Folded:         "bg8"         # Fold color
@@ -74,15 +76,14 @@ highlights:
         ModeMsg:        "@Normal"
         MsgSeparator:   "@Normal"
 
-        Title:          "fg"
-        MoreMsg:        "@Title"
+        Title:          "@Normal"
+        MoreMsg:        "@Normal"
         WarningMsg:     "yellow"
         Question:       "@WarningMsg"
-        ErrorMsg:       "red2"        # Errors that appear at command area.
 
-        lCursor:        "fg bg"
-        TermCursor:     "fg bg"
-        TermCursorNC:   "fg bg"
+        lCursor:        "@Normal"
+        TermCursor:     "@Normal"
+        TermCursorNC:   "@Normal"
 
         # ==========================================
         # 3. POPUPS & FLOATING WINDOWS
@@ -140,15 +141,15 @@ highlights:
         DiffText:       "yellow - b"
 
         # https://github.com/neovim/neovim/blob/master/runtime/syntax/diff.vim
-        diffAdded:      "green"       #
-        diffChanged:    "yellow"      #
-        diffRemoved:    "red"         #
-        diffLine:       "purple - b"  #
-        diffFile:       "blue"        #
-        diffOldFile:    "red2"        #
-        diffNewFile:    "green2"      #
-        diffIndexLine:  "yellow"      #
-        diffComment:    "@Comment"    #
+        diffAdded:      "green"
+        diffChanged:    "yellow"
+        diffRemoved:    "red"
+        diffLine:       "purple - b"
+        diffFile:       "blue"
+        diffOldFile:    "red2"
+        diffNewFile:    "green2"
+        diffIndexLine:  "yellow"
+        diffComment:    "@Comment"
 
         # ==========================================
         # 8. BASE SYNTAX (The Source of Truth)
@@ -160,7 +161,7 @@ highlights:
 
         # Data Values
         Constant:       "orange"
-        Number:         "gray - b"
+        Number:         "@Normal"
         Float:          "@Number"
         Boolean:        "green2 - b"
 
@@ -173,36 +174,38 @@ highlights:
         Statement:      "purple"      # \left, \theta \pi etc. (LATEX)
         Exception:      "@Statement"
         Conditional:    "purple - b"
-        Repeat:         "bg6 - b"
-        Keyword:        "@Repeat"
+        Repeat:         "yellow2 - b"
+        Keyword:        "bg6 - b"
 
         # Types & Storage
         Type:           "green"       # THIS IS \textbf \mathbb etc. (LATEX) ..................
         StorageClass:   "@Type"
-        Typedef:        "yellow"
-        Structure:      "@Typedef"
+        Typedef:        "@Type"
+        Structure:      "@Type"
 
         # Punctuation & Operators
-        Operator:       "yellow2"
-        Label:          "blue2"
-        Special:        "purple - b"  # \n etc. .......................................
-        SpecialChar:    "fg"
-        Delimiter:      "bg6"
+        Operator:       "yellow"
+        Delimiter:      "@Operator"
+        Special:        "@Operator"  # \n etc. .......................................
+        SpecialChar:    "@Operator"
+        Label:          "@Operator"
 
         # Preprocessor & Macros
-        PreProc:        "yellow -"    # COPY OF TREESITTER ##
-        Macro:          "bg6"         # COPY OF TREESITTER ------------------------------------
-        Define:         "@Macro"      # COPY OF TREESITTER -----------------------------------
-        Include:        "@Macro"      # TSInclude -------------------------------------------
-        PreCondit:      "bg6 - b"     # #if #endif, TSKeyword -------------------------
+        Macro:          "bg5 - b"
+        PreProc:        "@Macro"
+        Define:         "@Macro"
+        Include:        "@Macro"
+        PreCondit:      "@Macro"
 
         # Comments
-        Comment:        "bg3 - b"
+        Comment:        "bg5 - b"
         SpecialComment: "@Comment"
-        Todo:           "bg4 yellow b" # TSTodo ----------------------------------------
+        Todo:           "bg4 yellow b"
 
         # Diagnostics/Other
-        Error:          "red2 - b"    # Unknown.
+        Error:          "red2 - b"       # Unknown.
+        ErrorMsg:       "@Error"        # Errors that appear at command area.
+
         Debug:          "red"
         Ignore:         "cyan bg b"
         Underlined:     "- - u"
@@ -295,9 +298,9 @@ treesitter:
 
         "@operator": "@Operator"                 # Symbolic operators (+, *, -)
 
-        "@punctuation.delimiter": "@Delimiter"   # delimiters (; . ,)
-        "@punctuation.bracket": "@Delimiter"     # brackets () {} []
-        "@punctuation.special": "@Delimiter"     # string interpolation symbols
+        "@punctuation.delimiter": "@Comment"   # delimiters (; . ,)
+        "@punctuation.bracket": "@Comment"     # brackets () {} []
+        "@punctuation.special": "@Comment"     # string interpolation symbols
 
         # ==========================================
         # 6. COMMENTS
@@ -334,44 +337,44 @@ treesitter:
         # "@markup.strikethrough": "- - s"       # Strikethrough
         # "@markup.underline": "- - u"           # Underline
 
-lsp_semantic:
-        # --------------------------------------------------------------------#
-        # LSP Semantic Token Types
-        # These override Tree-sitter when the LSP has project-wide context.
-        # --------------------------------------------------------------------#
-        "@lsp.type.class": "yellow"
-        "@lsp.type.comment": "@@comment"
-        "@lsp.type.decorator": "yellow" # Same as @attribute
-        "@lsp.type.enum": "green"
-        "@lsp.type.enumMember": "cyan"
-        "@lsp.type.event": "yellow"
-        "@lsp.type.function": "green - b"
-        "@lsp.type.interface": "yellow"
-        "@lsp.type.keyword": "bg6 - b"
-        "@lsp.type.macro": "bg6 - b"
-        "@lsp.type.method": "purple b"
-        "@lsp.type.modifier": "red"
-        "@lsp.type.namespace": "purple b" # Same as @module
-        "@lsp.type.number": "blue"
-        "@lsp.type.operator": "yellow"
-        "@lsp.type.parameter": "fg"
-        "@lsp.type.property": "fg"
-        "@lsp.type.regexp": "red"
-        "@lsp.type.string": "@lsp.type.regexp"
-        "@lsp.type.struct": "yellow"
-        "@lsp.type.type": "green"
-        "@lsp.type.typeParameter": "cyan"
-        "@lsp.type.variable": "fg"
-        # --------------------------------------------------------------------#
-        # LSP Semantic Token Modifiers
-        # This is where LSP shines (e.g., underlining mutable variables)
-        # --------------------------------------------------------------------#
-        "@lsp.mod.deprecated": "- - s" # Strikethrough
-        "@lsp.typemod.variable.mutable": "- - u" # Underline mutable variables
-        "@lsp.typemod.function.async": "cyan - i" # Italic/Cyan async functions
-        "@lsp.typemod.method.async": "cyan bg i" # Italic/Cyan async methods
-        "@lsp.typemod.variable.readonly": "orange" # Constant/Readonly variables
-        "@lsp.typemod.parameter.mutable": "- - u" # Underline mutable params
+#lsp_semantic:
+#        # --------------------------------------------------------------------#
+#        # LSP Semantic Token Types
+#        # These override Tree-sitter when the LSP has project-wide context.
+#        # --------------------------------------------------------------------#
+#        "@lsp.type.class": "yellow"
+#        "@lsp.type.comment": "@@comment"
+#        "@lsp.type.decorator": "yellow" # Same as @attribute
+#        "@lsp.type.enum": "green"
+#        "@lsp.type.enumMember": "cyan"
+#        "@lsp.type.event": "yellow"
+#        "@lsp.type.function": "green - b"
+#        "@lsp.type.interface": "yellow"
+#        "@lsp.type.keyword": "@Keyword"
+#        "@lsp.type.macro": "@Macro"
+#        "@lsp.type.method": "purple b"
+#        "@lsp.type.modifier": "red"
+#        "@lsp.type.namespace": "purple b" # Same as @module
+#        "@lsp.type.number": "blue"
+#        "@lsp.type.operator": "yellow"
+#        "@lsp.type.parameter": "fg"
+#        "@lsp.type.property": "fg"
+#        "@lsp.type.regexp": "red"
+#        "@lsp.type.string": "@lsp.type.regexp"
+#        "@lsp.type.struct": "yellow"
+#        "@lsp.type.type": "green"
+#        "@lsp.type.typeParameter": "cyan"
+#        "@lsp.type.variable": "fg"
+#        # --------------------------------------------------------------------#
+#        # LSP Semantic Token Modifiers
+#        # This is where LSP shines (e.g., underlining mutable variables)
+#        # --------------------------------------------------------------------#
+#        "@lsp.mod.deprecated": "- - s" # Strikethrough
+#        "@lsp.typemod.variable.mutable": "- - u" # Underline mutable variables
+#        "@lsp.typemod.function.async": "cyan - i" # Italic/Cyan async functions
+#        "@lsp.typemod.method.async": "cyan bg i" # Italic/Cyan async methods
+#        "@lsp.typemod.variable.readonly": "orange" # Constant/Readonly variables
+#        "@lsp.typemod.parameter.mutable": "- - -" # Underline mutable params
 
 vimwiki:
         VimwikiHeader1: "orange - b"
